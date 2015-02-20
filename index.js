@@ -35,7 +35,8 @@ exports.urlSigner = function(key, secret, options){
       var hashed = hmacSha1(str);
 
       var urlRet = url(fname, bucket) +
-        '?Expires=' + epo +
+        ( (fname.indexOf('?') == -1) ? '?' : '&') + 
+        'Expires=' + epo +
         '&AWSAccessKeyId=' + key +
         '&Signature=' + encodeURIComponent(hashed);
 
